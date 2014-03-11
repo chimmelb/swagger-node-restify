@@ -470,6 +470,8 @@ function appendToApi(rootResource, api, spec) {
         break;
       case "body":
         break;
+      case "form":
+        break;
       default:
         validationErrors.push({"path": api.path, "name": param.name, "error": "invalid param type " + param.paramType});
         break;
@@ -492,6 +494,8 @@ function appendToApi(rootResource, api, spec) {
     "errorResponses" : spec.errorResponses,
     "nickname" : spec.nickname,
     "summary" : spec.summary,
+    "consumes" : spec.consumes,
+    "produces" : spec.produces,
   };
   
   if (spec.responseClass) {
@@ -555,6 +559,7 @@ exports.queryParam = exports.params.query;
 exports.pathParam = exports.params.path;
 exports.postParam = exports.params.post;
 exports.bodyParam = exports.params.body;
+exports.formParam = exports.params.form;
 exports.getModels = allModels;
 
 exports.error = error;
