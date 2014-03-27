@@ -172,6 +172,11 @@ function filterApiListing(req, res, r) {
     if (model && model.properties) {
       for (var key in model.properties) {
         var t = model.properties[key].type;
+        //JSON draft4 alllows a 'type" array, swagger does not. Use first in swagger docs
+        //example: "type" : [ "string", "null" ] can be validated as JSON, and appears to swagger as "string"
+        if( require('util').isArray( t ) ){
+          t = t[0];
+        }
 
         switch (t){
         case "Array":
